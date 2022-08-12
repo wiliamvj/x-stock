@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { searchStockQuote } from '../../utils/searchStockQuote';
 
-class SearchStockQuote {
+class SearchStockQuoteController {
   async handle(req: Request<{ stockName: string }>, res: Response) {
     const { stockName } = req.params;
 
@@ -17,4 +17,4 @@ class SearchStockQuote {
     res.json(result);
   }
 }
-export { SearchStockQuote };
+export { SearchStockQuoteController };
