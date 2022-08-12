@@ -1,20 +1,20 @@
 import axios from 'axios';
 
 async function searchStockQuote(symbol: string) {
-  try {
-    const response = await axios({
-      method: 'get',
-      url: `https://www.alphavantage.co/query?function=GLOBAL_QUOTE`,
-      params: {
-        symbol,
-        apikey: process.env.TOKEN_ALPHA_VANTAGE,
-      },
-    });
+  const response = await axios({
+    method: 'get',
+    url: `https://www.alphavantage.co/query?function=GLOBAL_QUOTE`,
+    params: {
+      symbol,
+      apikey: process.env.TOKEN_ALPHA_VANTAGE,
+    },
+  });
 
-    return response;
-  } catch {
-    throw new Error('Error to search stock quote');
+  if (response.data['Global Quote']['01. symbol'] === undefined) {
+    throw new Error('Name is not found!');
   }
+
+  return response;
 }
 
 export { searchStockQuote };
