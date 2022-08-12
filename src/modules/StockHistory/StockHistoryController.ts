@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
 
+import { searchHistoryQuote } from '../../utils/searchHistoryQuote';
+import { iHistoryData } from './interfaces/IHistoryData';
+
 interface IHistory {
   stockName: string;
   from: string;
@@ -11,37 +14,26 @@ class StockHistoryController {
     const { stockName } = req.params as unknown as IHistory;
     const { from, to } = req.query as unknown as IHistory;
 
-    const data = {
-      name: 'ok',
-      prices: [
-        {
-          opening: 10,
-          low: 5,
-          high: 12,
-          closing: 12,
-          pricedAt: Date.now(),
-          volume: 90,
-        },
-        {
-          opening: 10,
-          low: 5,
-          high: 12,
-          closing: 12,
-          pricedAt: Date.now(),
-          volume: 90,
-        },
-        {
-          opening: 10,
-          low: 5,
-          high: 12,
-          closing: 12,
-          pricedAt: Date.now(),
-          volume: 90,
-        },
-      ],
-    };
+    const historyData = await searchHistoryQuote(stockName);
 
-    res.json(data);
+    // const data = {
+    //   name: stockName,
+    //   timezone: '',
+    //   prices: [
+    //     {
+    //       opening: 0,
+    //       low: 0,
+    //       high: 0,
+    //       closing: 0,
+    //       pricedAt: '',
+    //       volume: 0,
+    //     },
+    //   ],
+    // } as iHistoryData;
+
+    console.log(historyData.data);
+
+    res.json();
   }
 }
 

@@ -10,7 +10,7 @@ async function searchHistoryQuote(symbol: string) {
     },
   });
 
-  if (response.data['Meta Data']['Information'] === undefined) {
+  if (response.data['Meta Data']['1. Information'] === undefined) {
     throw new Error('History is not found!');
   }
 
