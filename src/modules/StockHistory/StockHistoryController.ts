@@ -9,14 +9,6 @@ interface IHistory {
   to: string;
 }
 
-export interface iHistoryDataAPI {
-  '1. open': string;
-  '2. high': string;
-  '3. low': string;
-  '4. close': string;
-  '5. volume': string;
-}
-
 class StockHistoryController {
   async handle(req: Request, res: Response) {
     const { stockName } = req.params as unknown as IHistory;

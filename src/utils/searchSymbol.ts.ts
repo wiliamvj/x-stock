@@ -4,10 +4,10 @@ async function searchSymbol(company: string) {
   try {
     const response = await axios({
       method: 'get',
-      url: `https://www.alphavantage.co/query?function=SYMBOL_SEARCH`,
+      url: `https://finnhub.io//api/v1/search`,
       params: {
-        keywords: company,
-        apikey: process.env.TOKEN_ALPHA_VANTAGE,
+        q: company,
+        token: process.env.TOKEN_ALPHA_VANTAGE,
       },
     });
 
