@@ -1,12 +1,20 @@
 import { Request, Response } from 'express';
 
 import { searchHistoryQuote } from '../../utils/searchHistoryQuote';
-import { iHistoryData } from './interfaces/IHistoryData';
+import { IHistoryData, IHistoryAlpha } from './interfaces/IHistoryData';
 
 interface IHistory {
   stockName: string;
   from: string;
   to: string;
+}
+
+export interface iHistoryDataAPI {
+  '1. open': string;
+  '2. high': string;
+  '3. low': string;
+  '4. close': string;
+  '5. volume': string;
 }
 
 class StockHistoryController {
@@ -16,24 +24,32 @@ class StockHistoryController {
 
     const historyData = await searchHistoryQuote(stockName);
 
-    // const data = {
-    //   name: stockName,
-    //   timezone: '',
-    //   prices: [
-    //     {
-    //       opening: 0,
-    //       low: 0,
-    //       high: 0,
-    //       closing: 0,
-    //       pricedAt: '',
-    //       volume: 0,
-    //     },
-    //   ],
-    // } as iHistoryData;
+    const objectForDate = historyData.data['Time Series (60min)'];
 
-    console.log(historyData.data);
+    const itemStock = Object.values(objectForDate) as IHistoryAlpha[];
 
-    res.json();
+    const allItems = [] as IHistoryData[];
+
+    for (let i = 0; i < itemStock.length; i++) {
+      const result = {
+        opening: Number(itemStock[i]['1. open']),
+        low: Number(itemStock[i]['3. low']),
+        high: Number(itemStock[i]['2. high']),
+        closing: Number(itemStock[i]['4. close']),
+        pricedAt: Date.now(),
+        volume: Number(itemStock[i]['5. volume']),
+      };
+
+      allItems.push(result);
+    }
+
+    const result = {
+      name: stockName,
+      timezone: objectForDate['6. Time Zone'],
+      prices: allItems,
+    };
+
+    res.json(result);
   }
 }
 
