@@ -10,7 +10,7 @@ class CreateTokenController {
       throw new Error('name or email not found!');
     }
 
-    const token = sign({ email }, process.env.TOKEN_AUTH, {
+    const token = sign({ email }, process.env.TOKEN_AUTH || '', {
       subject: name,
       expiresIn: '30d',
     });
