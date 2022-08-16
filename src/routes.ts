@@ -6,12 +6,14 @@ import { CreateTokenController } from './modules/CreateToken/CreateTokenControll
 import { SearchStockQuoteController } from './modules/StockQuote/SearchStockQuoteController';
 import { StockHistoryController } from './modules/StockHistory/StockHistoryController';
 import { StockForComparison } from './modules/StockComparison/StockForComparison';
+import { CalculateStockGains } from './modules/StockGains/CalculateStockGains';
 
 const createTokenController = new CreateTokenController();
 
 const searchStockQuoteController = new SearchStockQuoteController();
 const stockHistoryController = new StockHistoryController();
 const stockForComparison = new StockForComparison();
+const calculateStockGains = new CalculateStockGains();
 
 const routes = Router();
 
@@ -33,6 +35,12 @@ routes.get(
   `/stocks/:stockName/compare`,
   ValidateToken,
   stockForComparison.handle
+);
+
+routes.get(
+  `/stocks/:stockName/gains`,
+  ValidateToken,
+  calculateStockGains.handle
 );
 
 export { routes };
