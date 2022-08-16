@@ -10,6 +10,8 @@ class StockSearchSymbolController {
 
     const searchCompanyInApi = await searchSymbol(company);
 
+    console.log(searchCompanyInApi.data);
+
     const bestMatches = searchCompanyInApi.data.bestMatches as string[];
 
     if (bestMatches.length <= 0 && searchCompanyInApi.status === 200) {

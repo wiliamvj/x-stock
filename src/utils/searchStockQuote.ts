@@ -1,18 +1,28 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
+import { IDataMarket } from '../modules/StockQuote/interfaces/IdataMarket';
 
-async function searchStockQuote(symbol: string) {
+interface IQuery {
+  symbols: string;
+  date_from: string;
+  date_to: string;
+}
+
+async function searchStockQuote({
+  symbols,
+  date_from,
+  date_to,
+}: IQuery): Promise<AxiosResponse<IDataMarket>> {
+  console.log({ symbols, date_from, date_to });
   const response = await axios({
     method: 'get',
-    url: `https://www.alphavantage.co/query?function=GLOBAL_QUOTE`,
+    url: `http://api.marketstack.com/v1/intraday`,
     params: {
-      symbol,
-      apikey: process.env.TOKEN_ALPHA_VANTAGE,
+      symbols,
+      access_key: process.env.TOKEN_ALPHA_VANTAGE,
+      date_from,
+      date_to,
     },
   });
-
-  if (response.data['Global Quote']['01. symbol'] === undefined) {
-    throw new Error('Name is not found!');
-  }
 
   return response;
 }
