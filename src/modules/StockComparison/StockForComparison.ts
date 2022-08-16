@@ -19,6 +19,10 @@ class StockForComparison {
     const { stockName } = req.params as unknown as IComparison;
     const { stocksToCompare } = req.query as unknown as IComparison;
 
+    if (!stocksToCompare) {
+      throw new Error('stocksToCompare  is required!');
+    }
+
     const { data: dataAPI } = await searchHistoryQuote({
       symbols: `${stockName},${stocksToCompare}`,
       date_from: moment().subtract(1, 'days').format('YYYY-MM-DD'),

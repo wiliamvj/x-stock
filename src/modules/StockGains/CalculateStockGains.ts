@@ -14,6 +14,10 @@ class CalculateStockGains {
     const { stockName } = req.params as unknown as IGains;
     const { purchasedAt, purchasedAmount } = req.query as unknown as IGains;
 
+    if (!purchasedAt || !purchasedAmount) {
+      throw new Error('purchasedAt and purchasedAmount is required!');
+    }
+
     const priceOfToday = await searchStockQuote({
       symbols: stockName,
       date_from: moment().format('YYYY-MM-DD'),

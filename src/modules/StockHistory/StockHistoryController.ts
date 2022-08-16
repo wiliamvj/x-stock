@@ -14,6 +14,10 @@ class StockHistoryController {
     const { stockName } = req.params as unknown as IHistory;
     const { from, to } = req.query as unknown as IHistory;
 
+    if (!from || !to) {
+      throw new Error('from and to query is required!');
+    }
+
     const { data: dataAPI } = await searchHistoryQuote({
       symbols: stockName,
       date_from: from,
