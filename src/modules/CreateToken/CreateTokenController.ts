@@ -12,7 +12,7 @@ class CreateTokenController {
 
     const token = sign({ email }, process.env.TOKEN_AUTH || '', {
       subject: name,
-      expiresIn: '30d',
+      expiresIn: '50d',
     });
 
     return res.json({ token: token });
