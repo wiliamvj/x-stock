@@ -19,11 +19,7 @@ const routes = Router();
 
 routes.post('/create/token', createTokenController.create);
 
-routes.get(
-  `/stock/:stockName/quote`,
-  ValidateToken,
-  searchStockQuoteController.handle
-);
+routes.get(`/stock/:stockName/quote`, searchStockQuoteController.handle);
 
 routes.get(
   `/stocks/:stockName/history`,
