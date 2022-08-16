@@ -9,8 +9,8 @@ class SearchStockQuoteController {
 
     const { data } = await searchStockQuote({
       symbols: stockName,
-      date_from: '2022-08-16',
-      date_to: '2022-08-16',
+      date_from: moment().format('YYYY-MM-DD'),
+      date_to: moment().format('YYYY-MM-DD'),
     });
 
     const result = {
