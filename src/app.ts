@@ -18,6 +18,11 @@ app.use(routes);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof Error) {
+    if (err.message === 'Request failed with status code 429') {
+      return res
+        .status(401)
+        .json({ message: 'Marketstack API limit reached, contact developer!' });
+    }
     return res.status(400).json({ message: err.message });
   }
 
