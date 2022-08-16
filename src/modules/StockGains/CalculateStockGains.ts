@@ -39,7 +39,7 @@ class CalculateStockGains {
       priceAtDate: purchaseOfDate.data.data[0].open,
       purchasedAmount: purchasedAmount,
       purchasedAt: purchasedAt,
-      capitalGains: gainsOfStock,
+      capitalGains: gainsOfStock * purchasedAmount,
     };
 
     res.json(result);
