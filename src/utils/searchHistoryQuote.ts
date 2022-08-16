@@ -13,13 +13,11 @@ async function searchHistoryQuote({
     url: `http://api.marketstack.com/v1/eod`,
     params: {
       symbols,
-      access_key: process.env.TOKEN_ALPHA_VANTAGE,
+      access_key: process.env.TOKEN_MARKETSTACK,
       date_from,
       date_to,
     },
   });
-
-  console.log(response.data);
 
   return response;
 }

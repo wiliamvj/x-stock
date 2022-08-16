@@ -13,7 +13,7 @@ async function searchStockQuote({
     url: `http://api.marketstack.com/v1/intraday`,
     params: {
       symbols,
-      access_key: process.env.TOKEN_ALPHA_VANTAGE,
+      access_key: process.env.TOKEN_MARKETSTACK,
       date_from,
       date_to,
     },

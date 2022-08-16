@@ -1,23 +1,23 @@
 import { Request, Response } from 'express';
 
 import { searchHistoryQuote } from '../../utils/searchHistoryQuote';
-import { IHistoryData, IHistoryAlpha } from './interfaces/IHistoryData';
+import { IHistoryData } from './interfaces/IHistoryData';
 
 interface IHistory {
   stockName: string;
-  date_from: string;
-  date_to: string;
+  from: string;
+  to: string;
 }
 
 class StockHistoryController {
   async handle(req: Request, res: Response) {
     const { stockName } = req.params as unknown as IHistory;
-    const { date_from, date_to } = req.query as unknown as IHistory;
+    const { from, to } = req.query as unknown as IHistory;
 
     const { data: dataAPI } = await searchHistoryQuote({
       symbols: stockName,
-      date_from,
-      date_to,
+      date_from: from,
+      date_to: to,
     });
 
     const itemStock = dataAPI.data;
