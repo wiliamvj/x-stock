@@ -1,20 +1,25 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { IQuery } from './interfaces/IQuery';
+import { IHistoryMarket } from './interfaces/IHistoryMarket';
 
-async function searchHistoryQuote(symbol: string) {
+async function searchHistoryQuote({
+  symbols,
+  date_from,
+  date_to,
+}: IQuery): Promise<AxiosResponse<IHistoryMarket>> {
   const response = await axios({
     method: 'get',
-    url: `https://api.marketstack.com/v1/eod`,
+    url: `http://api.marketstack.com/v1/eod`,
     params: {
-      symbol,
-      apikey: process.env.TOKEN_ALPHA_VANTAGE,
+      symbols,
+      access_key: process.env.TOKEN_ALPHA_VANTAGE,
+      date_from,
+      date_to,
     },
   });
 
-  if (response.data['Meta Data']['1. Information'] === undefined) {
-    throw new Error('History is not found!');
-  }
+  console.log(response.data);
 
   return response;
 }

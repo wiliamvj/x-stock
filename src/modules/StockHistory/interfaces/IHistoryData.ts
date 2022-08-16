@@ -1,16 +1,17 @@
 export interface IHistoryData {
-  opening: number;
-  low: number;
-  high: number;
-  closing: number;
-  pricedAt: any;
-  volume: number;
-}
-
-export interface IHistoryAlpha {
-  '1. open': string;
-  '2. high': string;
-  '3. low': string;
-  '4. close': string;
-  '5. volume': string;
+  open?: number;
+  high?: number;
+  low?: number;
+  close?: number;
+  volume?: number;
+  adj_high?: string;
+  adj_low?: string;
+  adj_close?: number;
+  adj_open?: string;
+  adj_volume?: string;
+  split_factor?: number;
+  dividend?: number;
+  symbol?: string;
+  exchange?: string;
+  date?: string;
 }
