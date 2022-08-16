@@ -12,7 +12,7 @@ beforeAll(async () => {
   token = res.body.token;
 });
 
-describe('Search today qupte', () => {
+describe('Search today quote', () => {
   it('I hope the user receives a quote today', async () => {
     const res = await request(app)
       .get(`/stock/ibm/quote`)
