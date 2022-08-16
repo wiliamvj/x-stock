@@ -64,7 +64,7 @@
 import { Request, Response } from 'express';
 import moment from 'moment';
 
-import { searchForComparison } from '../../utils/searchForComparison';
+import { searchHistoryQuote } from '../../utils/searchHistoryQuote';
 
 interface IComparison {
   stockName: string;
@@ -82,7 +82,7 @@ class StockForComparison {
     const { stockName } = req.params as unknown as IComparison;
     const { stocksToCompare } = req.query as unknown as IComparison;
 
-    const { data: dataAPI } = await searchForComparison({
+    const { data: dataAPI } = await searchHistoryQuote({
       symbols: `${stockName},${stocksToCompare}`,
       date_from: moment().subtract(1, 'days').format('YYYY-MM-DD'),
       date_to: moment().format('YYYY-MM-DD'),

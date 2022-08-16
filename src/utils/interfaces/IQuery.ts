@@ -3,9 +3,3 @@ export interface IQuery {
   date_from: string;
   date_to: string;
 }
-
-export interface IQueryComparison {
-  symbols: string;
-  date_from: string;
-  date_to: string;
-}
