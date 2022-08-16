@@ -1,11 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { IDataMarket } from '../modules/StockQuote/interfaces/IDataMarket';
 
-interface IQuery {
-  symbols: string;
-  date_from: string;
-  date_to: string;
-}
+import { IQuery } from './interfaces/IQuery';
 
 async function searchStockQuote({
   symbols,
