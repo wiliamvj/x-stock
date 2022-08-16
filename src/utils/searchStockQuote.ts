@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { IDataMarket } from '../modules/StockQuote/interfaces/IdataMarket';
+import { IDataMarket } from '../modules/StockQuote/interfaces/IDataMarket';
 
 interface IQuery {
   symbols: string;
