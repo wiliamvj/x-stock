@@ -1,9 +1,6 @@
 
 # Stock X API
 
-[![Heroku CI Status](https://stock-x-wil.herokuapp.com/last.svg)](https://dashboard.heroku.com/pipelines/61f8806b-6187-4b90-b192-accb65a37cb0/tests)
-
-
 Simple API for stock query
 
 Technologies used:
