@@ -84,8 +84,8 @@
         "tags": [
           "Stocks"
         ],
-        "summary": "Get Stock Quote ",
-        "description": "See a stockName quote of the day",
+        "summary": "Get Stock History ",
+        "description": "Fetch stocks on specific dates",
         "security": [
           {
             "bearerAuth": []
@@ -129,8 +129,8 @@
         "tags": [
           "Stocks"
         ],
-        "summary": "Get Stock Quote ",
-        "description": "See a stockName quote of the day",
+        "summary": "Get Stock to Compare ",
+        "description": "Tearch for stocks to compare",
         "security": [
           {
             "bearerAuth": []
@@ -155,7 +155,52 @@
             "description": "Ok"
           },
           "400": {
-            "description": "from and to query is required!"
+            "description": "stocksToCompare query is required!"
+          },
+          "401": {
+            "description": "Invalid Token"
+          }
+        }
+      }
+    },
+    "/stocks/{stockName}/gains": {
+      "get": {
+        "tags": [
+          "Stocks"
+        ],
+        "summary": "Get Stock Gains ",
+        "description": "Fetch earnings based on date",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "stockName",
+            "in": "path",
+            "description": "stockName: ex: IBM",
+            "required": true
+          },
+          {
+            "name": "purchasedAt",
+            "in": "query",
+            "description": "purchasedAt to search EX: 2022-08-10",
+            "required": true
+          },
+          {
+            "name": "purchasedAmount",
+            "in": "query",
+            "description": "purchasedAmount to search EX: 5",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "stocksToCompare  is required!"
           },
           "401": {
             "description": "Invalid Token"
