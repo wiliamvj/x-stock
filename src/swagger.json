@@ -1,0 +1,89 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Stock X API",
+    "description": "See your stock quotes",
+    "version": "1.0.0",
+    "contact": {
+      "email": "wiliamjoaquim@gmail.com"
+    }
+  },
+  "paths": {
+    "/create/token": {
+      "post": {
+        "tags": [
+          "User Token"
+        ],
+        "summary": "Create a new user token",
+        "description": "Route for create new user token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "name": "Fulano",
+                "email": "thebestemail.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "name or email not found!"
+          }
+        }
+      }
+    },
+    "/stock/{stockName}/quote": {
+      "get": {
+        "tags": [
+          "Stocks"
+        ],
+        "summary": "Get Stock Quote ",
+        "description": "See a stockName quote of the day",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "stockName",
+            "in": "path",
+            "description": "ID of pet to return",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Parameters not found or Email or password invalid!"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
