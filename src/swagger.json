@@ -68,10 +68,97 @@
         ],
         "responses": {
           "200": {
-            "description": "Created"
+            "description": "ok"
           },
           "400": {
-            "description": "Parameters not found or Email or password invalid!"
+            "description": "Error to request"
+          },
+          "401": {
+            "description": "Invalid Token"
+          }
+        }
+      }
+    },
+    "/stocks/{stockName}/history": {
+      "get": {
+        "tags": [
+          "Stocks"
+        ],
+        "summary": "Get Stock Quote ",
+        "description": "See a stockName quote of the day",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "stockName",
+            "in": "path",
+            "description": "stockName: ex: IBM",
+            "required": true
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "date_from to search EX: 2022-08-10",
+            "required": true
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "date_to to search EX: 2022-08-12",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "stocksToCompare  is required!"
+          },
+          "401": {
+            "description": "Invalid Token"
+          }
+        }
+      }
+    },
+    "/stocks/{stockName}/compare": {
+      "get": {
+        "tags": [
+          "Stocks"
+        ],
+        "summary": "Get Stock Quote ",
+        "description": "See a stockName quote of the day",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "stockName",
+            "in": "path",
+            "description": "stockName: ex: IBM",
+            "required": true
+          },
+          {
+            "name": "stocksToCompare",
+            "in": "query",
+            "description": "stocksToCompare, separated by commas, ex: IBM,APLE",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "400": {
+            "description": "from and to query is required!"
+          },
+          "401": {
+            "description": "Invalid Token"
           }
         }
       }
