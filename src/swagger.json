@@ -62,7 +62,7 @@
           {
             "name": "stockName",
             "in": "path",
-            "description": "ID of pet to return",
+            "description": "stock name: EX: IBM",
             "required": true
           }
         ],
