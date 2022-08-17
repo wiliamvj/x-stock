@@ -1,4 +1,8 @@
+
 # Stock X API
+
+[![Heroku CI Status](https://stock-x-wil.herokuapp.com/last.svg)](https://dashboard.heroku.com/pipelines/61f8806b-6187-4b90-b192-accb65a37cb0/tests)
+
 
 Simple API for stock query
 
@@ -9,6 +13,8 @@ Technologies used:
 - Jest and supertest for tests
 
 Consuming the Marketstack API see more [here](https://marketstack.com/documentation)
+
+Using the frontend of this repository click [here](https://github.com/wiliamvj/x-stock-frontend)
 
 ## How to run?
 
