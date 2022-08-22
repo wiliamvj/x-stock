@@ -25,9 +25,11 @@ class StockForComparison {
 
     const { data: dataAPI } = await searchHistoryQuote({
       symbols: `${stockName},${stocksToCompare}`,
-      date_from: moment().subtract(1, 'days').format('YYYY-MM-DD'),
+      date_from: moment().subtract(5, 'days').format('YYYY-MM-DD'),
       date_to: moment().format('YYYY-MM-DD'),
     });
+
+    console.log(dataAPI);
 
     const allItems = [] as IHistoryData[];
 

@@ -20,7 +20,7 @@ class CalculateStockGains {
 
     const priceOfToday = await searchStockQuote({
       symbols: stockName,
-      date_from: moment().format('YYYY-MM-DD'),
+      date_from: moment().subtract(5, 'days').format('YYYY-MM-DD'),
       date_to: moment().format('YYYY-MM-DD'),
     });
 
